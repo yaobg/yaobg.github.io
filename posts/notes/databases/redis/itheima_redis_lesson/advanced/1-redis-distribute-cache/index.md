@@ -312,6 +312,6 @@ print(resp)
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/databases/redis/itheima_redis_lesson/advanced/1-redis-distribute-cache/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/databases/redis/itheima_redis_lesson/advanced/1-redis-distribute-cache/  
 

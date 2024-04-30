@@ -32,6 +32,6 @@ podman 架构
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/devops/docker/imooc/9-docker-vs-podman/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/devops/docker/imooc/9-docker-vs-podman/  
 

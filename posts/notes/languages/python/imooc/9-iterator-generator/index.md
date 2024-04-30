@@ -53,6 +53,6 @@ class MyIterator(Iterator):
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/languages/python/imooc/9-iterator-generator/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/languages/python/imooc/9-iterator-generator/  
 

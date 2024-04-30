@@ -6,6 +6,6 @@
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/tips/languages/golang/grpc/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/tips/languages/golang/grpc/  
 

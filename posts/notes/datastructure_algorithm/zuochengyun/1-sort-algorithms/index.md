@@ -603,6 +603,6 @@ def get_digit_num(num: int, digit: int):
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/datastructure_algorithm/zuochengyun/1-sort-algorithms/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/datastructure_algorithm/zuochengyun/1-sort-algorithms/  
 

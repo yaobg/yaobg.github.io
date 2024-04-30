@@ -71,6 +71,6 @@ LFU的访问次数之所以叫做**逻辑访问次数**，是因为并不是每�
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/databases/redis/itheima_redis_lesson/advanced/7-redis-principle-4-memory-policy/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/databases/redis/itheima_redis_lesson/advanced/7-redis-principle-4-memory-policy/  
 

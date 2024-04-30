@@ -6,6 +6,6 @@
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/about/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/about/  
 

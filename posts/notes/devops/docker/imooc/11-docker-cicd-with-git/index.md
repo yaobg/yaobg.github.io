@@ -10,6 +10,6 @@
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/devops/docker/imooc/11-docker-cicd-with-git/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/devops/docker/imooc/11-docker-cicd-with-git/  
 

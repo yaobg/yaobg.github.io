@@ -209,6 +209,6 @@ python 为了语义明确，就引入了 async 和 await 关键词用于定义�
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/languages/python/imooc/12-coroutine/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/languages/python/imooc/12-coroutine/  
 

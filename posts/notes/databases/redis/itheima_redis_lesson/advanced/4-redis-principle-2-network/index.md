@@ -192,6 +192,6 @@ epoll模式中如何解决这些问题的？
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/databases/redis/itheima_redis_lesson/advanced/4-redis-principle-2-network/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/databases/redis/itheima_redis_lesson/advanced/4-redis-principle-2-network/  
 

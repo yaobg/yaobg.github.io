@@ -356,6 +356,6 @@ spec: # 详情描述
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/devops/k8s/itheima/4-k8s-pod-controller-advanced/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/devops/k8s/itheima/4-k8s-pod-controller-advanced/  
 

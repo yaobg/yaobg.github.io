@@ -93,6 +93,6 @@ if __name__ == '__main__':
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/languages/python/imooc/13-asyncio/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/languages/python/imooc/13-asyncio/  
 

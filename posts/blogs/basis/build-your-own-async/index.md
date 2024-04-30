@@ -1266,6 +1266,6 @@ sched.run()
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/blogs/basis/build-your-own-async/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/blogs/basis/build-your-own-async/  
 

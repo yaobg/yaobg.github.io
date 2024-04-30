@@ -127,6 +127,6 @@ default via 172.18.0.1 dev eth1
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/devops/docker/imooc/8-docker-swarm/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/devops/docker/imooc/8-docker-swarm/  
 

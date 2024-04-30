@@ -73,6 +73,6 @@ HTTP-message = start-line *( header-field CRLF ) CRLF [ message-body ]
 
 ---
 
-> 作者: [姚保国](https://ybgblog.top)  
-> URL: https://ybgblog.top/posts/notes/networks/web-protocol/geekbang/1-http1-protocol/  
+> 作者: [姚保国](https://yaobg.github.io)  
+> URL: https://yaobg.github.io/posts/notes/networks/web-protocol/geekbang/1-http1-protocol/  
 
