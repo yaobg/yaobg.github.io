@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Hugo - 标签 - 姚保国的博客</title>
+    <link>http://localhost:1313/tags/hugo/</link>
+    <description>Hugo - 标签 - 姚保国的博客</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 07 May 2024 18:04:43 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/hugo/" rel="self" type="application/rss+xml" /><item>
+  <title>Hugo 博客（美化）</title>
+  <link>http://localhost:1313/posts/blogs/hugo/2-beautify/</link>
+  <pubDate>Tue, 07 May 2024 18:04:43 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://localhost:1313/posts/blogs/hugo/2-beautify/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Hugo 博客（搭建）</title>
+  <link>http://localhost:1313/posts/blogs/hugo/1-illustrate/</link>
+  <pubDate>Tue, 07 May 2024 18:04:10 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://localhost:1313/posts/blogs/hugo/1-illustrate/</guid>
+  <description><![CDATA[Hugo Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。 快速开始 安装Hugo 1. 二进制安装（推荐：简单、快速） 到 Hugo Releases 下]]></description>
+</item>
+</channel>
+</rss>

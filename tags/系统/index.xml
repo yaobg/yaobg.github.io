@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>系统 - 标签 - 姚保国的博客</title>
+    <link>http://localhost:1313/tags/%E7%B3%BB%E7%BB%9F/</link>
+    <description>系统 - 标签 - 姚保国的博客</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 07 May 2024 18:25:29 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+  <title>Win 软件</title>
+  <link>http://localhost:1313/posts/tools/win/</link>
+  <pubDate>Tue, 07 May 2024 18:25:29 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://localhost:1313/posts/tools/win/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Mac 软件</title>
+  <link>http://localhost:1313/posts/tools/mac/</link>
+  <pubDate>Tue, 07 May 2024 18:25:17 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://localhost:1313/posts/tools/mac/</guid>
+  <description><![CDATA[前言 记录下工作和生活中好用的工具和插件。 终端 zsh zsh是一款比较好用的shell，可以提升工作效率。 plugins（插件） 下图是我常用的工作插]]></description>
+</item>
+</channel>
+</rss>

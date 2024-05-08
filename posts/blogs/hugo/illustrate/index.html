@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Hugo 博客（搭建） - 姚保国的博客</title><meta name="author" content="姚保国">
+<meta name="author-link" content="https://yaobg.github.io">
+<meta name="description" content="Hugo Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。 快速开始 安装Hugo 1. 二进制安装（推荐：简单、快速） 到 Hugo Releases 下" /><meta name="keywords" content='hugo, 博客' />
+  <meta itemprop="name" content="Hugo 博客（搭建）">
+  <meta itemprop="description" content="Hugo Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。 快速开始 安装Hugo 1. 二进制安装（推荐：简单、快速） 到 Hugo Releases 下">
+  <meta itemprop="datePublished" content="2024-05-06T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-05-06T00:00:00+00:00">
+  <meta itemprop="wordCount" content="888">
+  <meta itemprop="image" content="http://localhost:1313/apple-touch-icon.png">
+  <meta itemprop="keywords" content="Hugo,博客"><meta property="og:url" content="http://localhost:1313/posts/blogs/hugo/illustrate/">
+  <meta property="og:site_name" content="姚保国的博客">
+  <meta property="og:title" content="Hugo 博客（搭建）">
+  <meta property="og:description" content="Hugo Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。 快速开始 安装Hugo 1. 二进制安装（推荐：简单、快速） 到 Hugo Releases 下">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-05-06T00:00:00+00:00">
+    <meta property="article:tag" content="Hugo">
+    <meta property="article:tag" content="博客">
+    <meta property="og:image" content="http://localhost:1313/apple-touch-icon.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/apple-touch-icon.png"><meta name="twitter:title" content="Hugo 博客（搭建）">
+<meta name="twitter:description" content="Hugo Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。 快速开始 安装Hugo 1. 二进制安装（推荐：简单、快速） 到 Hugo Releases 下">
+<meta name="application-name" content="姚保国的博客">
+<meta name="apple-mobile-web-app-title" content="姚保国的博客"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/blogs/hugo/illustrate/" /><link rel="prev" href="http://localhost:1313/posts/notes/datastructure_algorithm/zuochengyun/5-trei-and-greedy-algorithm/" /><link rel="next" href="http://localhost:1313/posts/notes/devops/k8s/kubersphere/itheima/1-kubersphere-base/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="3_Zf27e0mNtTIsBWn36hi_d4KTxPd2Zh1dsZMVnKK8k" /><meta name="baidu-site-verification" content="code-VsfDko5mls" /><meta name="360-site-verification" content="1a8490494ad7f3fe3e0f7e4a61ce0775" /><meta name="sogou_site_verification" content="2dnMvyemIm" /><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Hugo 博客（搭建）",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/blogs\/hugo\/illustrate\/"
+    },"genre": "posts","keywords": "hugo, 博客","wordcount":  888 ,
+    "url": "http:\/\/localhost:1313\/posts\/blogs\/hugo\/illustrate\/","datePublished": "2024-05-06T00:00:00+00:00","dateModified": "2024-05-06T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "姚保国"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="姚保国的博客"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/apple-touch-icon.png"
+    data-srcset="/apple-touch-icon.png, /apple-touch-icon.png 1.5x, /apple-touch-icon.png 2x"
+    data-sizes="auto"
+    alt="姚保国的博客"
+    title="姚保国的博客"/><span class="header-title-text">姚保国的博客</span></a><span class="header-subtitle">开发、学习、生活、技术分享</span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class='fa-solid fa-archive fa-fw fa-sm'></i> 文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class='fa-solid fa-th fa-fw fa-sm'></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class='fa-solid fa-tags fa-fw fa-sm'></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+                
+                
+              ><i class='fa-solid fa-book fa-fw fa-sm'></i> 学习笔记</a></li><li class="menu-item delimiter"></li><li class="menu-item language">
+            <span role="button" aria-label="选择语言" title="选择语言">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </span>
+            <ul class="sub-menu"><li class="menu-item">没有更多翻译</li></ul>
+          </li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="姚保国的博客"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/apple-touch-icon.png"
+    data-srcset="/apple-touch-icon.png, /apple-touch-icon.png 1.5x, /apple-touch-icon.png 2x"
+    data-sizes="auto"
+    alt="/apple-touch-icon.png"
+    title="/apple-touch-icon.png"/><span class="header-title-text">姚保国的博客</span></a><span class="header-subtitle">开发、学习、生活、技术分享</span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class='fa-solid fa-archive fa-fw fa-sm'></i> 文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class='fa-solid fa-th fa-fw fa-sm'></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class='fa-solid fa-tags fa-fw fa-sm'></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+                  
+                  
+                ><i class='fa-solid fa-book fa-fw fa-sm'></i> 学习笔记</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language">
+            <span role="button" aria-label="选择语言" title="选择语言">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </span>
+            <select class="language-select" onchange="location = this.value;"><option disabled>没有更多翻译</option></select>
+          </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Hugo 博客（搭建）</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://yaobg.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://avatars.githubusercontent.com/u/49563612?s=400&amp;u=dbc6b8ccd88e1d7db2bf966fd838594df55038ee&amp;v=4"
+    data-srcset="https://avatars.githubusercontent.com/u/49563612?s=400&amp;u=dbc6b8ccd88e1d7db2bf966fd838594df55038ee&amp;v=4, https://avatars.githubusercontent.com/u/49563612?s=400&amp;u=dbc6b8ccd88e1d7db2bf966fd838594df55038ee&amp;v=4 1.5x, https://avatars.githubusercontent.com/u/49563612?s=400&amp;u=dbc6b8ccd88e1d7db2bf966fd838594df55038ee&amp;v=4 2x"
+    data-sizes="auto"
+    alt="姚保国"
+    title="姚保国"/>&nbsp;姚保国</a></span>
+          <span class="post-category">收录于 <a href="/categories/blog/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Blog</a></span></div>
+      <div class="post-meta-line"><span title=2024-05-06&#32;00:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-06">2024-05-06</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 888 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Hugo 博客（搭建）">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装hugo">安装Hugo</a>
+          <ul>
+            <li><a href="#1-二进制安装推荐简单快速">1. 二进制安装（推荐：简单、快速）</a></li>
+            <li><a href="#2-源码安装">2. 源码安装</a></li>
+          </ul>
+        </li>
+        <li><a href="#生成站点">生成站点</a></li>
+        <li><a href="#创建文章">创建文章</a></li>
+        <li><a href="#安装皮肤">安装皮肤</a></li>
+        <li><a href="#运行hugo">运行Hugo</a></li>
+        <li><a href="#部署">部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="hugo">Hugo</h1>
+<p>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</p>
+<h1 id="快速开始">快速开始</h1>
+<h3 id="安装hugo">安装Hugo</h3>
+<h4 id="1-二进制安装推荐简单快速">1. 二进制安装（推荐：简单、快速）</h4>
+<p>到 <a href="https://github.com/spf13/hugo/releases"target="_blank" rel="external nofollow noopener noreferrer">Hugo Releases<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 下载对应的操作系统版本的Hugo二进制文件（hugo或者hugo.exe）</p>
+<p>Mac下直接使用 <code>Homebrew</code> 安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install hugo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-源码安装">2. 源码安装</h4>
+<p>源码编译安装，首先安装好依赖的工具：</p>
+<ul>
+<li><a href="http://git-scm.com/"target="_blank" rel="external nofollow noopener noreferrer">Git<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+<li><a href="http://mercurial.selenic.com/"target="_blank" rel="external nofollow noopener noreferrer">Mercurial<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+<li><a href="http://golang.org/"target="_blank" rel="external nofollow noopener noreferrer">Go<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 1.3+ (Go 1.4+ on Windows)</li>
+</ul>
+<p>设置好 <code>GOPATH</code> 环境变量，获取源码并编译：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
+</span></span><span class="line"><span class="cl">$ go get -v github.com/spf13/hugo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>源码会下载到 <code>$GOPATH/src</code> 目录，二进制在 <code>$GOPATH/bin/</code></p>
+<p>如果需要更新所有Hugo的依赖库，增加 <code>-u</code> 参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ go get -u -v github.com/spf13/hugo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="生成站点">生成站点</h3>
+<p>使用Hugo快速生成站点，比如希望生成到 <code>/path/to/site</code> 路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ hugo new site /path/to/site
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就在 <code>/path/to/site</code> 目录里生成了初始站点，进去目录：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> /path/to/site
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>站点目录结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  ▸ archetypes/
+</span></span><span class="line"><span class="cl">  ▸ content/
+</span></span><span class="line"><span class="cl">  ▸ layouts/
+</span></span><span class="line"><span class="cl">  ▸ static/
+</span></span><span class="line"><span class="cl">    config.toml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建文章">创建文章</h3>
+<p>创建一个 <code>about</code> 页面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ hugo new about.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>about.md</code> 自动生成到了 <code>content/about.md</code> ，打开 <code>about.md</code> 看下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">+++
+</span></span><span class="line"><span class="cl">date = &#34;2015-10-25T08:36:54-07:00&#34;
+</span></span><span class="line"><span class="cl">draft = true
+</span></span><span class="line"><span class="cl">title = &#34;about&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+++
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">正文内容
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>内容是 <code>Markdown</code> 格式的，<code>+++</code> 之间的内容是 <a href="https://github.com/toml-lang/toml"target="_blank" rel="external nofollow noopener noreferrer">TOML<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 格式的，根据你的喜好，你可以换成 <a href="http://www.yaml.org/"target="_blank" rel="external nofollow noopener noreferrer">YAML<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 格式（使用 <code>---</code> 标记）或者 <a href="http://www.json.org/"target="_blank" rel="external nofollow noopener noreferrer">JSON<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 格式。</p>
+<p>创建第一篇文章，放到 <code>post</code> 目录，方便之后生成聚合页面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ hugo new post/first.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>打开编辑 <code>post/first.md</code> ：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">date: &#34;2015-10-25T08:36:54-07:00&#34;
+</span></span><span class="line"><span class="cl">title: &#34;first&#34;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Hello Hugo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> 1. aaa
+</span></span><span class="line"><span class="cl"> 1. bbb
+</span></span><span class="line"><span class="cl"> 1. ccc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装皮肤">安装皮肤</h3>
+<p>到 <a href="https://www.gohugo.org/theme/"target="_blank" rel="external nofollow noopener noreferrer">皮肤列表<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 挑选一个心仪的皮肤，比如你觉得 <code>Hyde</code> 皮肤不错，找到相关的 <code>GitHub</code> 地址，创建目录 <code>themes</code>，在 <code>themes</code> 目录里把皮肤 <code>git clone</code> 下来：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建 themes 目录</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> themes
+</span></span><span class="line"><span class="cl">$ git clone https://github.com/spf13/hyde.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="运行hugo">运行Hugo</h3>
+<p>在你的站点根目录执行 <code>Hugo</code> 命令进行调试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ hugo server --theme<span class="o">=</span>hyde --buildDrafts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（注明：v0.15 版本之后，不再需要使用 <code>--watch</code> 参数了）</p>
+<p>浏览器里打开： <code>http://localhost:1313</code></p>
+<h3 id="部署">部署</h3>
+<p>假设你需要部署在 <code>GitHub Pages</code> 上，首先在GitHub上创建一个Repository，命名为：<code>coderzh.github.io</code> （coderzh替换为你的github用户名）。</p>
+<p>在站点根目录执行 <code>Hugo</code> 命令生成最终页面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ hugo --theme<span class="o">=</span>hyde --baseUrl<span class="o">=</span><span class="s2">&#34;http://coderzh.github.io/&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（注意，以上命令并不会生成草稿页面，如果未生成任何文章，请去掉文章头部的 <code>draft=true</code> 再重新生成。）</p>
+<p>如果一切顺利，所有静态页面都会生成到 <code>public</code> 目录，将pubilc目录里所有文件 <code>push</code> 到刚创建的Repository的 <code>master</code> 分支。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> public
+</span></span><span class="line"><span class="cl">$ git init
+</span></span><span class="line"><span class="cl">$ git remote add origin https://github.com/coderzh/coderzh.github.io.git
+</span></span><span class="line"><span class="cl">$ git add -A
+</span></span><span class="line"><span class="cl">$ git commit -m <span class="s2">&#34;first commit&#34;</span>
+</span></span><span class="line"><span class="cl">$ git push -u origin master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>浏览器里访问：<code>http://coderzh.github.io/</code></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-05-06&#32;00:00:00>更新于 2024-05-06&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/posts/blogs/hugo/illustrate/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/blogs/hugo/illustrate/" data-title="Hugo 博客（搭建）" data-hashtags="hugo,博客"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/blogs/hugo/illustrate/" data-hashtag="hugo"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="http://localhost:1313/posts/blogs/hugo/illustrate/" data-title="Hugo 博客（搭建）" data-web><i class="fa-brands fa-whatsapp fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/posts/blogs/hugo/illustrate/" data-title="Hugo 博客（搭建）"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/blogs/hugo/illustrate/" data-title="Hugo 博客（搭建）"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="http://localhost:1313/posts/blogs/hugo/illustrate/" data-title="Hugo 博客（搭建）" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="http://localhost:1313/posts/blogs/hugo/illustrate/" data-title="Hugo 博客（搭建）" data-description=""><i class="fa-brands fa-blogger fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="http://localhost:1313/posts/blogs/hugo/illustrate/" data-title="Hugo 博客（搭建）"><i class="fa-brands fa-evernote fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hugo/">Hugo</a>,&nbsp;<a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/notes/datastructure_algorithm/zuochengyun/5-trei-and-greedy-algorithm/" class="prev" rel="prev" title="数据结构和算法学习笔记（五）前缀树和贪心算法"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>数据结构和算法学习笔记（五）前缀树和贪心算法</a>
+      <a href="/posts/notes/devops/k8s/kubersphere/itheima/1-kubersphere-base/" class="next" rel="next" title="kubersphere 学习笔记（一）基础">kubersphere 学习笔记（一）基础<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.125.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.16-RC"><img class="fixit-icon" src="/images/fixit.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://yaobg.github.io"target="_blank" rel="external nofollow noopener noreferrer">姚保国</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><a href="https://github.com/yaobg" title="在 GitHub 上找到我"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>
