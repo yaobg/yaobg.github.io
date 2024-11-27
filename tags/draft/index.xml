@@ -3,13 +3,13 @@
     <title>Draft - 标签 - 姚保国的博客</title>
     <link>http://localhost:1313/tags/draft/</link>
     <description>Draft - 标签 - 姚保国的博客</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 06 May 2024 13:44:06 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/draft/" rel="self" type="application/rss+xml" /><item>
-  <title>1 Faq</title>
-  <link>http://localhost:1313/posts/notes/devops/k8s/kubersphere/1-faq/</link>
-  <pubDate>Mon, 06 May 2024 13:44:06 &#43;0800</pubDate>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><atom:link href="http://localhost:1313/tags/draft/" rel="self" type="application/rss+xml" /><item>
+  <title>React 入门</title>
+  <link>http://localhost:1313/posts/notes/study/web/react/1-react-basic/</link>
+  <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
   <author>作者</author>
-  <guid>http://localhost:1313/posts/notes/devops/k8s/kubersphere/1-faq/</guid>
-  <description><![CDATA[]]></description>
+  <guid>http://localhost:1313/posts/notes/study/web/react/1-react-basic/</guid>
+  <description><![CDATA[React react是用于构建web和原生交互界面的库 创建 1 npx create-react-app react-basic JSX 概念：JSX是javascript和XML(HTML)的缩写，表示在JS代码中编]]></description>
 </item>
 </channel>
 </rss>
