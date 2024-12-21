@@ -3,13 +3,13 @@
     <title>Draft - 分类 - 姚保国的博客</title>
     <link>http://localhost:1313/categories/draft/</link>
     <description>Draft - 分类 - 姚保国的博客</description>
-    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><atom:link href="http://localhost:1313/categories/draft/" rel="self" type="application/rss+xml" /><item>
-  <title>React 入门</title>
-  <link>http://localhost:1313/posts/notes/study/web/react/1-react-basic/</link>
-  <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 12 Dec 2024 15:33:10 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/draft/" rel="self" type="application/rss+xml" /><item>
+  <title>helm教程</title>
+  <link>http://localhost:1313/posts/notes/devops/k8s/helm/</link>
+  <pubDate>Thu, 12 Dec 2024 15:33:10 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://localhost:1313/posts/notes/study/web/react/1-react-basic/</guid>
-  <description><![CDATA[React react是用于构建web和原生交互界面的库 创建 1 npx create-react-app react-basic JSX 概念：JSX是javascript和XML(HTML)的缩写，表示在JS代码中编]]></description>
+  <guid>http://localhost:1313/posts/notes/devops/k8s/helm/</guid>
+  <description><![CDATA[]]></description>
 </item>
 </channel>
 </rss>

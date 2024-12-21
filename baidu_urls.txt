@@ -1,3 +1,5 @@
+https://yaobg.github.io/posts/notes/devops/k8s/gpu/
+https://yaobg.github.io/posts/notes/devops/k8s/helm/
 https://yaobg.github.io/posts/notes/devops/docker/mirror/1-gitlab/
 https://yaobg.github.io/posts/notes/devops/k8s/kubesphere/1-base/
 https://yaobg.github.io/posts/notes/datastructure_algorithm/zuochengyun/5-trei-and-greedy-algorithm/

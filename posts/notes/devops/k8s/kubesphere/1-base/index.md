@@ -297,6 +297,8 @@ kubectl get deployment,pods -n nfs-system
 kubectl apply -f deploy/class.yaml
 ```
 
+官方：https://ask.kubesphere.io/forum/d/24142-33-zhang-gao-qing-da-tu-dai-ni-wan-zhuan-kubesphere-412-bu-shu-yu-kuo-zhan-zu-jian-an-zhuang
+
 ## 问题
 
 1、下载超时
@@ -308,6 +310,32 @@ export KKZONE=cn
 2、kubeKey安装一直失败
 
 需要注意是否是k8s版本的问题
+
+3、Node节点Unable to connect to the server: x509错误
+
+原因是因为上一次节点启动的时候没有清楚干净，在执行copy操作的时候覆盖了已有的
+
+- 先备份$HOME/.kube
+```shell
+cp -R $HOME/.kube/ $HOME/.kube_backup
+```
+- 删除kube文件夹
+```shell
+rm -r $HOME/.kube
+```
+- copy kubelet.conf到.kube/config 下
+```shell
+mkdir -p $HOME/.kube
+cp /etc/kubernetes/kubelet.conf $HOME/.kube/config
+```
+- 更改文件权限：
+```shell
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+- 检查 Kubernetes 集群是否可访问
+```shell
+kubectl get nodes
+```
 
 
 ---

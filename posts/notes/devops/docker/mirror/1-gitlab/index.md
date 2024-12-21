@@ -57,6 +57,16 @@ gitlab-ctl reconfigure
 # 容器外执行
 docker exec 容器名或容器ID gitlab-ctl reconfigure  
 ```
+修改gitlab.yaml中端口为9080
+
+
+![1.png](images/1.png)
+
+重启gitlab服务
+
+```shell
+gitlab-ctl restart
+```
 
 ## 备份
 ### 手动备份
@@ -94,6 +104,12 @@ docker exec -it gitlab /bin/bash
 # 查看密码
 cat /etc/gitlab/initial_root_password
 ```
+2、CI/CD此作业已阻塞，因为该项目没有分配任何可用Runner。
+解决办法
+- 编辑runner设置可以执行未设置tag的标签
+![2.png](images/2.png)
+- 或者在gitlab-ci.yml文件中设置
+![3.png](images/3.png)
 
 ---
 
