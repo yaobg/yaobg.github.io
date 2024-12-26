@@ -1,0 +1,366 @@
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>Jenkins保姆级安装教程 - 姚保国的博客</title><meta name=author content="姚保国">
+<meta name=author-link content="https://yaobg.github.io"><meta name=description content="Golang、Java、Python、后端、笔记和技术分享"><meta name=keywords content='jenkins,devops,k8s'><meta itemprop=name content="Jenkins保姆级安装教程"><meta itemprop=description content="Golang、Java、Python、后端、笔记和技术分享"><meta itemprop=datePublished content="2024-12-10T14:37:09+08:00"><meta itemprop=dateModified content="2024-12-10T14:37:09+08:00"><meta itemprop=wordCount content="3385"><meta itemprop=image content="https://yaobg.github.io/logo.png"><meta itemprop=keywords content="jenkins,devops,k8s"><meta property="og:url" content="https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/"><meta property="og:site_name" content="姚保国的博客"><meta property="og:title" content="Jenkins保姆级安装教程"><meta property="og:description" content="Golang、Java、Python、后端、笔记和技术分享"><meta property="og:locale" content="zh-CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-12-10T14:37:09+08:00"><meta property="article:modified_time" content="2024-12-10T14:37:09+08:00"><meta property="article:tag" content="Devops"><meta property="article:tag" content="K8s"><meta property="article:tag" content="Docker"><meta property="article:tag" content="Jenkins"><meta property="og:image" content="https://yaobg.github.io/logo.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://yaobg.github.io/logo.png"><meta name=twitter:title content="Jenkins保姆级安装教程"><meta name=twitter:description content><meta name=application-name content="时光的留痕"><meta name=apple-mobile-web-app-title content="时光的留痕"><meta name=theme-color data-light=#ffffff data-dark=#252627 content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/><link rel=prev href=https://yaobg.github.io/posts/notes/devops/docker/mirror/1-gitlab/><link rel=next href=https://yaobg.github.io/posts/notes/devops/k8s/helm/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><meta name=google-site-verification content="3_Zf27e0mNtTIsBWn36hi_d4KTxPd2Zh1dsZMVnKK8k"><meta name=baidu-site-verification content="code-VsfDko5mls"><meta name=360-site-verification content="1a8490494ad7f3fe3e0f7e4a61ce0775"><meta name=sogou_site_verification content="2dnMvyemIm"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Jenkins保姆级安装教程","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/yaobg.github.io\/posts\/notes\/devops\/docker\/mirror\/2-jenkins\/"},"genre":"posts","keywords":"devops, k8s, docker, jenkins","wordcount":3385,"url":"https:\/\/yaobg.github.io\/posts\/notes\/devops\/docker\/mirror\/2-jenkins\/","datePublished":"2024-12-10T14:37:09+08:00","dateModified":"2024-12-10T14:37:09+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"姚保国"},"description":""}</script></head><body data-header-desktop=sticky data-header-mobile=auto><script>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("data-theme","dark")</script><div class=wrapper><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=right><div class=header-title><a href=/ title=姚保国的博客><img class="lazyload logo" src=/svg/loading.min.svg data-src=/logo.png data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" data-sizes=auto alt=姚保国的博客 title=姚保国的博客><span class=header-title-text>时光留痕</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/posts/><i class='fa-solid fa-archive fa-fw fa-sm'></i> 文章</a></li><li class=menu-item><a class=menu-link href=/categories/><i class='fa-solid fa-th fa-fw fa-sm'></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class='fa-solid fa-tags fa-fw fa-sm'></i> 标签</a></li><li class=menu-item><a class=menu-link href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/><i class='fa-solid fa-book fa-fw fa-sm'></i> 学习笔记</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder="搜索文章标题或内容 ..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=姚保国的博客><img class="lazyload logo" src=/svg/loading.min.svg data-src=/logo.png data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x" data-sizes=auto alt=/logo.png title=/logo.png><span class=header-title-text>时光留痕</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="搜索文章标题或内容 ..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/posts/><i class='fa-solid fa-archive fa-fw fa-sm'></i> 文章</a></li><li class=menu-item><a class=menu-link href=/categories/><i class='fa-solid fa-th fa-fw fa-sm'></i> 分类</a></li><li class=menu-item><a class=menu-link href=/tags/><i class='fa-solid fa-tags fa-fw fa-sm'></i> 标签</a></li><li class=menu-item><a class=menu-link href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/><i class='fa-solid fa-book fa-fw fa-sm'></i> 学习笔记</a></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=container data-page-style=normal><aside class=toc id=toc-auto><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside><aside class=aside-custom></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span title=转载 class=icon-repost><i class="fa-solid fa-share fa-fw" aria-hidden=true></i></span><span>Jenkins保姆级安装教程</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><span class=author><i class="fa-solid fa-user-circle" aria-hidden=true></i>
+</span></span><span class=post-category>收录于 <a href=/categories/k8s/><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> K8s</a>&ensp;<a href=/categories/devops/><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Devops</a></span></div><div class=post-meta-line><span title="2024-12-10 14:37:09"><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-12-10>2024-12-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden=true></i> 约 3385 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden=true></i> 预计阅读 7 分钟</span>&nbsp;<span id=busuanzi_container_page_pv class="busuanzi_visitors comment-visitors" data-flag-title=Jenkins保姆级安装教程>
+<i class="fa-regular fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_page_pv>-</span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#jenkins>jenkins</a><ul><li><a href=#安装>安装</a></li><li><a href=#配置插件>配置插件</a><ul><li><a href=#gitlab>gitlab</a></li><li><a href=#harbor>harbor</a></li><li><a href=#maven>maven</a></li></ul></li><li><a href=#项目>项目</a><ul><li><a href=#构建>构建</a></li><li><a href=#回滚>回滚</a></li></ul></li><li><a href=#常见问题>常见问题</a></li></ul></li></ul></nav></div></div><div class=content id=content><h2 id=jenkins>jenkins</h2><h3 id=安装>安装</h3><p>1、创建docker-compose文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>services</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=n>jenkins</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>image</span><span class=p>:</span> <span class=n>jenkins</span><span class=o>/</span><span class=n>jenkins</span><span class=p>:</span><span class=mf>2.452</span><span class=o>.</span><span class=mi>3</span><span class=o>-</span><span class=n>lts</span>
+</span></span><span class=line><span class=cl>    <span class=n>container_name</span><span class=p>:</span> <span class=n>jenkins</span>
+</span></span><span class=line><span class=cl>    <span class=n>restart</span><span class=p>:</span> <span class=n>on</span><span class=o>-</span><span class=n>failure</span>
+</span></span><span class=line><span class=cl>    <span class=n>user</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>environment</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=n>JAVA_OPTS</span><span class=o>=-</span><span class=n>Duser</span><span class=o>.</span><span class=n>timezone</span><span class=o>=</span><span class=n>Asia</span><span class=o>/</span><span class=n>Shanghai</span>
+</span></span><span class=line><span class=cl>    <span class=n>ports</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=s2>&#34;8082:8080&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=s2>&#34;50000:50000&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>volumes</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=o>/</span><span class=n>mnt</span><span class=o>/</span><span class=n>nfs</span><span class=o>/</span><span class=n>jenkins_home</span><span class=p>:</span><span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=n>jenkins_home</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>localtime</span><span class=p>:</span><span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>localtime</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>bin</span><span class=o>/</span><span class=n>docker</span><span class=p>:</span><span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>bin</span><span class=o>/</span><span class=n>docker</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=n>run</span><span class=o>/</span><span class=n>docker</span><span class=o>.</span><span class=n>sock</span><span class=p>:</span><span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=n>run</span><span class=o>/</span><span class=n>docker</span><span class=o>.</span><span class=n>sock</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>local</span><span class=o>/</span><span class=n>bin</span><span class=o>/</span><span class=n>kubectl</span><span class=p>:</span><span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>bin</span><span class=o>/</span><span class=n>kubectl</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>sbin</span><span class=o>/</span><span class=n>helm</span><span class=p>:</span><span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>bin</span><span class=o>/</span><span class=n>helm</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=o>$</span><span class=n>HOME</span><span class=o>/.</span><span class=n>kube</span><span class=p>:</span><span class=o>$</span><span class=n>HOME</span><span class=o>/.</span><span class=n>kube</span>
+</span></span><span class=line><span class=cl>      <span class=o>-</span> <span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>local</span><span class=o>/</span><span class=n>maven</span><span class=o>-</span><span class=mf>3.9</span><span class=p>:</span><span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>local</span><span class=o>/</span><span class=n>maven</span><span class=o>-</span><span class=mf>3.9</span>                                                                                                                                                                                             
+</span></span></code></pre></td></tr></table></div></div><p>指令解析：</p><ul><li>-d ：后台运行容器</li><li>-p：端口映射， 左边是本地端口，右边是docker容器端口 ，8080是Jenkins Web 界面的工作端口,50000是JNLP（Java Network Launch Protocol）工作端口。这个端口用于 Jenkins 节点和主控节点之间的通信。</li><li>-v ：目录挂载，将主机上的 /mnt/nfs/jenkins_home 目录挂载到容器内的 /var/jenkins_home 目录，用于持久化 Jenkins 的数据。/etc/localtime:/etc/localtime：将本地主机上的时区信息文件挂载到容器内的 /etc/localtime 文件中，确保容器内的时间与主机上的时间一致</li><li>-v /usr/bin/docker:/usr/bin/docker: 将主机上的 /usr/bin/docker 文件挂载到容器中的 /usr/bin/docker，这样容器内的 Jenkins 可以直接使用宿主机上的 Docker 命令。在使用 GitLab/Jenkins 等 CI 软件的时候需要使用 Docker 命令来构建镜像，需要在容器中使用 Docker 命令；通过将宿主机的 Docker 共享给容器</li><li>-v /var/run/docker.sock:/var/run/docker.sock: 将主机上的 Docker socket 文件挂载到容器中的相同位置，这样容器内的 Jenkins 可以与宿主机上的 Docker 引擎进行通信。</li><li>-v /usr/bin/kubectl:/usr/bin/kubectl: 挂载kubectl与k8s通信</li><li>-v /usr/sbin/helm:/usr/bin/helm : 挂载helm</li><li>–restart=on-failure：设置容器的重启策略为在容器以非零状态退出（异常退出）时重启。</li><li>-u 0：将容器内进程的用户身份设置为 root 用户，等同于-u root。</li><li>-–name jenkins：给容器指定一个名称为 jenkins。</li></ul><p><strong>2、启动Jenkins容器</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>docker-compose up d-d
+</span></span></code></pre></td></tr></table></div></div><p><strong>3、验证Jenkins容器是否启动成功</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>docker ps 
+</span></span></code></pre></td></tr></table></div></div><p>如果已经运行，会输出jenkins容器的相关信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>CONTAINER ID   IMAGE                                 COMMAND                  CREATED          STATUS                PORTS                                                                                                                         NAMES
+</span></span><span class=line><span class=cl>0de7b0a81cb1   jenkins/jenkins:2.426.2-lts           <span class=s2>&#34;/usr/bin/tini -- /u…&#34;</span>   <span class=m>36</span> seconds ago   Up <span class=m>36</span> seconds         0.0.0.0:50000-&gt;50000/tcp, :::50000-&gt;50000/tcp, 0.0.0.0:8082-&gt;8080/tcp, <span class=o>[</span>::<span class=o>]</span>:8082-&gt;8080/tcp
+</span></span></code></pre></td></tr></table></div></div><p><strong>4、获取管理员密码</strong>
+我们在进入Jenkins的管理页面的时候，是需要管理员密码，所以我们需要获取管理员密码</p><p>获取管理员密码有两种方式</p><ul><li>查看日志</li></ul><p>使用下面命令查看jenkins的输出日志，jenkins是我们在启动jenkins时给jenkins指定的容器名</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>docker logs jenkins
+</span></span></code></pre></td></tr></table></div></div><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/1.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/1.png, /posts/notes/devops/docker/mirror/2-jenkins/images/1.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/1.png 2x" data-sizes=auto alt=img.png title=img.png width=1028 height=306></p><ul><li>查看文件
+不看日志，我们也可以直接查看/var/jenkins_home/secrets/initialAdminPassword文件，这个目录在我们进入jenkins 管理页面时会看到</li></ul><p><strong>5、修改插件源</strong></p><p>Jenkins在安装插件时，下载相关插件包特别慢，我们可以将Jenkins默认的插件数据源变更为国内数据源，然后重启Jenkins</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1>#进入更新配置目录</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> <span class=o>{</span>你的Jenkins工作目录<span class=o>}</span>/updates
+</span></span><span class=line><span class=cl><span class=c1># 我这工作目录</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /mnt/nfs/jenkins_home/updates
+</span></span></code></pre></td></tr></table></div></div><p>使用下面命令替换default.json文件中指定的源</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sed -i <span class=s1>&#39;s/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g&#39;</span> default.json <span class=o>&amp;&amp;</span> sed -i <span class=s1>&#39;s/http:\/\/www.google.com/https:\/\/www.baidu.com/g&#39;</span> default.json
+</span></span></code></pre></td></tr></table></div></div><p>修改下载地址</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> <span class=o>{</span>你的Jenkins工作目录<span class=o>}</span>/
+</span></span></code></pre></td></tr></table></div></div><p>找到下面这个文件 hudson.model.UpdateCenter.xml文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>&lt;?xml <span class=nv>version</span><span class=o>=</span><span class=s1>&#39;1.1&#39;</span> <span class=nv>encoding</span><span class=o>=</span><span class=s1>&#39;UTF-8&#39;</span>?&gt;
+</span></span><span class=line><span class=cl>&lt;sites&gt;
+</span></span><span class=line><span class=cl>  &lt;site&gt;
+</span></span><span class=line><span class=cl>    &lt;id&gt;default&lt;/id&gt;
+</span></span><span class=line><span class=cl>    &lt;url&gt;https://updates.jenkins.io/update-center.json&lt;/url&gt;
+</span></span><span class=line><span class=cl>  &lt;/site&gt;
+</span></span><span class=line><span class=cl>&lt;/sites&gt;      
+</span></span></code></pre></td></tr></table></div></div><p>将url替换为http://mirror.esuni.jp/jenkins/updates/update-center.json</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>&lt;?xml <span class=nv>version</span><span class=o>=</span><span class=s1>&#39;1.1&#39;</span> <span class=nv>encoding</span><span class=o>=</span><span class=s1>&#39;UTF-8&#39;</span>?&gt;
+</span></span><span class=line><span class=cl>&lt;sites&gt;
+</span></span><span class=line><span class=cl>  &lt;site&gt;
+</span></span><span class=line><span class=cl>    &lt;id&gt;default&lt;/id&gt;
+</span></span><span class=line><span class=cl>    &lt;url&gt;http://mirror.esuni.jp/jenkins/updates/update-center.json&lt;/url&gt;
+</span></span><span class=line><span class=cl>  &lt;/site&gt;
+</span></span><span class=line><span class=cl>&lt;/sites&gt;
+</span></span></code></pre></td></tr></table></div></div><p><strong>7、登录web页面</strong></p><p>使用ip:8082，8082就是我们主机映射到容器8080的端口，如果你使用的是其他端口，那么需要换成其他端口</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/2.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/2.png, /posts/notes/devops/docker/mirror/2-jenkins/images/2.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/2.png 2x" data-sizes=auto alt=img.png title=img.png width=989 height=883></p><p>输入密码之后，就可以安装插件，直接选择安装推荐的插件即可</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/3.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/3.png, /posts/notes/devops/docker/mirror/2-jenkins/images/3.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/3.png 2x" data-sizes=auto alt=3.png title=3.png width=990 height=887></p><p><strong>8、插件推荐</strong></p><p>除了推荐插件之外，下面是一些常用插件，大家按需安装</p><ul><li>Locale（中文插件）</li><li>Gitlab Plugin （拉取 gitlab 中的源代码）</li><li>Maven Integration（maven构建工具）</li><li>NodeJs（node构建工具）</li><li>Publish Over SSH（远程推送工具）</li><li>Role-based Authorization Strategy（权限管理）</li><li>Deploy to container（自动化部署工程所需要插件，部署到容器插件）</li><li>git parameter（用户参数化构建过程里添加git类型参数）</li><li>Kubernetes (k8s)</li><li>Version Number（构建版本号控制）<table><thead><tr><th><strong>变量名称</strong></th><th><strong>功能说明</strong></th></tr></thead><tbody><tr><td><code>BUILD_DATE_FORMATTED</code></td><td>如果此参数是用引号括起来的 JAVA 日期格式字符串，则它将替换为以该字符串格式化的构建日期。如果没有参数，则使用标准简单日期格式。例如：<code>${BUILD_DATE_FORMATTED, "yyyy-MM-dd"}</code>。</td></tr><tr><td><code>BUILD_DAY</code></td><td>返回构建的一天作为整数。如果有参数，则指定字符数并使用填充日期字符串。例如：<code>${BUILD_DAY}</code> 返回 <code>3</code>，<code>${BUILD_DAY, X}</code> 返回 <code>3</code>，<code>${BUILD_DAY, XX}</code> 返回 <code>03</code>。</td></tr><tr><td><code>BUILD_WEEK</code></td><td>返回当前周数，参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><code>BUILD_MONTH</code></td><td>返回当前月份，参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><code>BUILD_YEAR</code></td><td>返回当前年份，参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><code>BUILDS_TODAY</code></td><td>返回今天发生的构建数量，包括当前构建。这在午夜重置。参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><code>BUILDS_THIS_WEEK</code></td><td>返回本周发生的构建数量，包括当前构建。这在每周的开始时重置。参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><code>BUILDS_THIS_MONTH</code></td><td>返回本月发生的构建数量，包括当前构建。这在每月的第一天重置。参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><code>BUILDS_THIS_YEAR</code></td><td>返回今年发生的构建数量。这在每年的第一天重置。参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><code>BUILDS_ALL_TIME</code></td><td>返回自项目开始以来发生的构建数量。这可以与 Hudson 内部版本号不同，因为它可以定期重置（例如，从 1.0 移到 2.0）。可以配置为以任意数字开始而不是标准日期。例如：<code>${BUILDS_ALL_TIME}</code>。</td></tr><tr><td><code>MONTHS_SINCE_PROJECT_START</code></td><td>自项目开始日期以来的月数。这基于当前构建的月份和项目开始日期的月份。例如：项目从 10 月 31 日开始，并在 11 月 1 日构建，将返回 <code>1</code>。参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><code>YEARS_SINCE_PROJECT_START</code></td><td>自项目开始日期以来的年数。这仅依赖于年份。例如：项目从 2022 年开始，当前年份为 2024 年，则返回 <code>2</code>。参数约定与 <code>BUILD_DAY</code> 相同。</td></tr><tr><td><strong>其他</strong></td><td>在 <code>${}</code> 中包含的其他参数将被替换为具有相同名称的环境变量（如果存在），否则将被忽略。例如，这可以用于集成源代码控制版本号。</td></tr></tbody></table></li></ul><p>pipeline写法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>  VERSION = VersionNumber(
+</span></span><span class=line><span class=cl>            projectStartDate: &#39;1970-12-12&#39;,
+</span></span><span class=line><span class=cl>            versionNumberString: &#39;0.0.${BUILD_ID}&#39;,
+</span></span><span class=line><span class=cl>            versionPrefix: &#39;&#39;,
+</span></span><span class=line><span class=cl>            worstResultForIncrement: &#39;SUCCESS&#39;
+</span></span><span class=line><span class=cl>        )
+</span></span></code></pre></td></tr></table></div></div><ul><li>Extended Choice Parameter（扩展了原生参数化构建的功能）</li><li>Active Choices（参数联动功能）</li><li>Build Pipeline （用于可视化展示多个作业（Jobs）之间的依赖关系和执行状态。它帮助用户创建、监控和管理流水线工作流，特别适合分阶段的构建流程，例如代码编译、测试、部署等）</li><li>AnsiColor（改变控制台颜色）</li><li>timestamper（构建显示时间）</li><li>Blue Ocean（流水线的可视化和管理变得更加简单和直观）</li><li>Customized Build (可以在右侧显示构建的变量)</li></ul><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/customized-build.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/customized-build.png, /posts/notes/devops/docker/mirror/2-jenkins/images/customized-build.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/customized-build.png 2x" data-sizes=auto alt=customized-build.png title=customized-build.png width=411 height=229></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl> post {
+</span></span><span class=line><span class=cl>        always {
+</span></span><span class=line><span class=cl>            // 清理临时文件
+</span></span><span class=line><span class=cl>            cleanWs()
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>        success {
+</span></span><span class=line><span class=cl>            script {
+</span></span><span class=line><span class=cl>                currentBuild.description = &#34;分支:${BRANCH_NAME} \n 标签:${TAG} \n 版本: ${env.VERSION}&#34;
+</span></span><span class=line><span class=cl>            }
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>    }
+</span></span></code></pre></td></tr></table></div></div><ul><li>Docker Pipeline（插件允许你在Pipeline中使用Docker，支持构建Docker镜像和在Docker容器中运行构建）</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>pipeline</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>agent</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>docker</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>image</span> <span class=s1>&#39;maven:3.6.3-jdk-11&#39;</span> 
+</span></span><span class=line><span class=cl>            <span class=n>args</span> <span class=s1>&#39;-v /var/run/docker.sock:/var/run/docker.sock&#39;</span> 
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>stages</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>stage</span><span class=p>(</span><span class=s1>&#39;Build&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>steps</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=n>sh</span> <span class=s1>&#39;mvn clean package&#39;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置插件>配置插件</h3><h4 id=gitlab>gitlab</h4><p>注意：需要先安装上面的Gitlab Plugin插件</p><p><strong>1、gitlab生成授权令牌</strong></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/4.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/4.png, /posts/notes/devops/docker/mirror/2-jenkins/images/4.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/4.png 2x" data-sizes=auto alt=img.png title=img.png width=1866 height=889></p><p><strong>2、获取授权的令牌</strong></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/5.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/5.png, /posts/notes/devops/docker/mirror/2-jenkins/images/5.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/5.png 2x" data-sizes=auto alt=img.png title=img.png width=1103 height=174></p><p><strong>3、jenkins配置令牌</strong></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/6.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/6.png, /posts/notes/devops/docker/mirror/2-jenkins/images/6.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/6.png 2x" data-sizes=auto alt=6.png title=6.png width=1904 height=880></p><p><strong>4、配置gitlab授权</strong></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/gitlab-3.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/gitlab-3.png, /posts/notes/devops/docker/mirror/2-jenkins/images/gitlab-3.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/gitlab-3.png 2x" data-sizes=auto alt=gitlab-3.png title=gitlab-3.png width=1614 height=835></p><p><strong>5、配置git 账户来拉取代码</strong></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/gitlab-4.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/gitlab-4.png, /posts/notes/devops/docker/mirror/2-jenkins/images/gitlab-4.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/gitlab-4.png 2x" data-sizes=auto alt=gitlab-4.png title=gitlab-4.png width=1908 height=888></p><h4 id=harbor>harbor</h4><p>和gitlab一样，在凭证新增harbor凭证</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/7.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/7.png, /posts/notes/devops/docker/mirror/2-jenkins/images/7.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/7.png 2x" data-sizes=auto alt=img.png title=img.png width=1725 height=468></p><h4 id=maven>maven</h4><p>进入 系统管理->全局管理</p><p><strong>1、设置maven setting.xml</strong></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/maven-1.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/maven-1.png, /posts/notes/devops/docker/mirror/2-jenkins/images/maven-1.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/maven-1.png 2x" data-sizes=auto alt=maven-1.png title=maven-1.png width=1906 height=782></p><p><strong>2、设置maven目录</strong></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/maven-2.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/maven-2.png, /posts/notes/devops/docker/mirror/2-jenkins/images/maven-2.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/maven-2.png 2x" data-sizes=auto alt=maven-2.png title=maven-2.png width=1786 height=828></p><h3 id=项目>项目</h3><h4 id=构建>构建</h4><p>本文章采用构建一个自由风格的项目为例子</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span><span class=lnt>93
+</span><span class=lnt>94
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>pipeline <span class=o>{</span>
+</span></span><span class=line><span class=cl>    agent any
+</span></span><span class=line><span class=cl>    tools <span class=o>{</span>
+</span></span><span class=line><span class=cl>        maven <span class=s1>&#39;maven-3.9&#39;</span>  // Maven 的名称需与全局工具配置中一致
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    options <span class=o>{</span>
+</span></span><span class=line><span class=cl>        timestamps<span class=o>()</span>  // 为所有步骤启用时间戳
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    parameters <span class=o>{</span>
+</span></span><span class=line><span class=cl>        string<span class=o>(</span>name: <span class=s1>&#39;BRANCH_NAME&#39;</span>, defaultValue: <span class=s1>&#39;dev&#39;</span>, description: <span class=s1>&#39;Git branch&#39;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>        string<span class=o>(</span>name: <span class=s1>&#39;TAG&#39;</span>, defaultValue: <span class=s1>&#39;latest&#39;</span>, description: <span class=s1>&#39;Git Tag&#39;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    environment <span class=o>{</span>
+</span></span><span class=line><span class=cl>        <span class=nv>GIT_URL</span> <span class=o>=</span> <span class=s1>&#39;http://192.168.50.7:9080/wx-ai/data-platform-server.git&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=nv>CREDENTIALSID</span> <span class=o>=</span> <span class=s1>&#39;gitlab-user-ybg&#39;</span> // Git 凭据 ID
+</span></span><span class=line><span class=cl>        <span class=nv>VERSION</span> <span class=o>=</span> VersionNumber<span class=o>(</span>
+</span></span><span class=line><span class=cl>            projectStartDate: <span class=s1>&#39;1970-12-12&#39;</span>,
+</span></span><span class=line><span class=cl>            versionNumberString: <span class=s1>&#39;0.0.${BUILDS_ALL_TIME}&#39;</span>,
+</span></span><span class=line><span class=cl>            versionPrefix: <span class=s1>&#39;&#39;</span>,
+</span></span><span class=line><span class=cl>            worstResultForIncrement: <span class=s1>&#39;SUCCESS&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=nv>HARBOR_REPO</span> <span class=o>=</span> <span class=s2>&#34;192.168.50.7/dev/data-platform-server:</span><span class=si>${</span><span class=nv>env</span><span class=p>.VERSION</span><span class=si>}</span><span class=s2>&#34;</span>  // Harbor 的 Docker 仓库地址
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    stages <span class=o>{</span>
+</span></span><span class=line><span class=cl>        stage<span class=o>(</span><span class=s1>&#39;拉取代码&#39;</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            steps <span class=o>{</span>
+</span></span><span class=line><span class=cl>                script <span class=o>{</span>
+</span></span><span class=line><span class=cl>                    // 检出代码
+</span></span><span class=line><span class=cl>                    git credentialsId: env.CREDENTIALSID, url: env.GIT_URL, branch: params.BRANCH_NAME
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=o>(</span>params.TAG <span class=o>&amp;&amp;</span> params.TAG.startsWith<span class=o>(</span><span class=s2>&#34;v&#34;</span><span class=o>))</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>                        <span class=nb>echo</span> <span class=s2>&#34;Checking out Git Tag: </span><span class=si>${</span><span class=nv>params</span><span class=p>.TAG</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>                        sh <span class=s2>&#34;git fetch --tags&#34;</span>
+</span></span><span class=line><span class=cl>                        sh <span class=s2>&#34;git checkout tags/</span><span class=si>${</span><span class=nv>params</span><span class=p>.TAG</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>                    <span class=o>}</span>
+</span></span><span class=line><span class=cl>                <span class=o>}</span>
+</span></span><span class=line><span class=cl>            <span class=o>}</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>        stage<span class=o>(</span><span class=s1>&#39;Maven Build&#39;</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            steps <span class=o>{</span>
+</span></span><span class=line><span class=cl>                script <span class=o>{</span>
+</span></span><span class=line><span class=cl>                    // 使用 Maven 打包并重命名为 app.jar
+</span></span><span class=line><span class=cl>                    sh <span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                    echo &#34;</span>Starting Maven Build...<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                    mvn clean package -DskipTests -e -X
+</span></span></span><span class=line><span class=cl><span class=s2>                    &#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=o>}</span>
+</span></span><span class=line><span class=cl>            <span class=o>}</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>        stage<span class=o>(</span><span class=s1>&#39;编译镜像&#39;</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            steps <span class=o>{</span>
+</span></span><span class=line><span class=cl>                script <span class=o>{</span>
+</span></span><span class=line><span class=cl>                    // 构建 Docker 镜像
+</span></span><span class=line><span class=cl>                    sh <span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                    ls -lh target
+</span></span></span><span class=line><span class=cl><span class=s2>                    echo &#34;</span>Building Docker image: <span class=si>${</span><span class=nv>HARBOR_REPO</span><span class=si>}</span><span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                    docker build -t </span><span class=si>${</span><span class=nv>HARBOR_REPO</span><span class=si>}</span><span class=s2> .
+</span></span></span><span class=line><span class=cl><span class=s2>                    &#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=o>}</span>
+</span></span><span class=line><span class=cl>            <span class=o>}</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>        stage<span class=o>(</span><span class=s1>&#39;推送harbor&#39;</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            steps <span class=o>{</span>
+</span></span><span class=line><span class=cl>                script <span class=o>{</span>
+</span></span><span class=line><span class=cl>                    // 登录并推送镜像到 Harbor
+</span></span><span class=line><span class=cl>                    withCredentials<span class=o>([</span>usernamePassword<span class=o>(</span>credentialsId: <span class=s1>&#39;harbor&#39;</span>, passwordVariable: <span class=s1>&#39;HARBOR_PASSWORD&#39;</span>, usernameVariable: <span class=s1>&#39;HARBOR_USERNAME&#39;</span><span class=o>)])</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>                        sh <span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                        echo &#34;</span>Logging into Harbor...<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                        docker login 192.168.50.7 -u </span><span class=si>${</span><span class=nv>HARBOR_USERNAME</span><span class=si>}</span><span class=s2> -p </span><span class=si>${</span><span class=nv>HARBOR_PASSWORD</span><span class=si>}</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>                        echo &#34;</span>Pushing Docker image to Harbor...<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                        docker push </span><span class=si>${</span><span class=nv>HARBOR_REPO</span><span class=si>}</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>                        &#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>                    <span class=o>}</span>
+</span></span><span class=line><span class=cl>                <span class=o>}</span>
+</span></span><span class=line><span class=cl>            <span class=o>}</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>        stage<span class=o>(</span><span class=s1>&#39;Deploy with Helm&#39;</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            steps <span class=o>{</span>
+</span></span><span class=line><span class=cl>                script <span class=o>{</span>
+</span></span><span class=line><span class=cl>                    // 使用 Helm 部署
+</span></span><span class=line><span class=cl>                    sh <span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                    echo &#34;</span>Deploying with Helm...<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>                    helm upgrade --install data-platform-server deploy/k8s-helm --namespace dev --set image.repository=</span><span class=si>${</span><span class=nv>HARBOR_REPO</span><span class=si>}</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>                    &#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=o>}</span>
+</span></span><span class=line><span class=cl>            <span class=o>}</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>    post <span class=o>{</span>
+</span></span><span class=line><span class=cl>        always <span class=o>{</span>
+</span></span><span class=line><span class=cl>            // 清理临时文件
+</span></span><span class=line><span class=cl>            cleanWs<span class=o>()</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=回滚>回滚</h4><h3 id=常见问题>常见问题</h3><p>1、jenkins插件安装超时</p><ul><li>Dashboard > 插件管理 > 高级 > 升级站点 > URL</li><li>URL更改为http://mirror.esuni.jp/jenkins/updates/update-center.json</li></ul><p>2、不知道如何编写pipeline</p><p>点击项目项目的流水线语法</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/8.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/8.png, /posts/notes/devops/docker/mirror/2-jenkins/images/8.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/8.png 2x" data-sizes=auto alt=8.png title=8.png width=1829 height=891></p><p>生成自己需要的语法</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/posts/notes/devops/docker/mirror/2-jenkins/images/9.png data-srcset="/posts/notes/devops/docker/mirror/2-jenkins/images/9.png, /posts/notes/devops/docker/mirror/2-jenkins/images/9.png 1.5x, /posts/notes/devops/docker/mirror/2-jenkins/images/9.png 2x" data-sizes=auto alt=9.png title=9.png width=1768 height=817></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="2024-12-10 14:37:09">更新于 2024-12-10&nbsp;</span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/notes/devops/docker/mirror/2-jenkins/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/ data-title=Jenkins保姆级安装教程 data-hashtags=devops,k8s,docker,jenkins><i class="fa-brands fa-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/ data-hashtag=devops><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 WhatsApp" data-sharer=whatsapp data-url=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/ data-title=Jenkins保姆级安装教程 data-web><i class="fa-brands fa-whatsapp fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/ data-title=Jenkins保姆级安装教程><i data-svg-src=/lib/simple-icons/icons/line.min.svg aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/ data-title=Jenkins保姆级安装教程><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Myspace" data-sharer=myspace data-url=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/ data-title=Jenkins保姆级安装教程 data-description><i data-svg-src=/lib/simple-icons/icons/myspace.min.svg aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Blogger" data-sharer=blogger data-url=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/ data-title=Jenkins保姆级安装教程 data-description><i class="fa-brands fa-blogger fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Evernote" data-sharer=evernote data-url=https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/ data-title=Jenkins保姆级安装教程><i class="fa-brands fa-evernote fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/devops/>Devops</a>,&nbsp;<a href=/tags/k8s/>K8s</a>,&nbsp;<a href=/tags/docker/>Docker</a>,&nbsp;<a href=/tags/jenkins/>Jenkins</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/notes/devops/docker/mirror/1-gitlab/ class=prev rel=prev title=gitLab镜像部署><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>gitLab镜像部署</a>
+<a href=/posts/notes/devops/k8s/helm/ class=next rel=next title=helm教程>helm教程<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></main><footer class=footer><div class=footer-container><div class="footer-line powered">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.125.4">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.2.16-RC"><img class=fixit-icon src=/images/fixit.svg alt="FixIt logo">&nbsp;FixIt</a></div><div class="footer-line copyright" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2024</span><span class=author itemprop=copyrightHolder>
+<a href=https://yaobg.github.io target=_blank rel="external nofollow noopener noreferrer">姚保国</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div><div class="footer-line ibruce"><span id=busuanzi_container_site_uv title=总访客数><i class="fa-regular fa-user fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title=总访问量><i class="fa-regular fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class="variant-numeric d-none">0%</span></div></div><a href=https://github.com/yaobg title="在 GitHub 上找到我" target=_blank rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentcolor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentcolor" class="octo-body"/></svg></a><div id=mask></div><noscript><div class=noscript-warning>FixIt 主题在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/cookieconsent/cookieconsent.min.css><script src=/lib/autocomplete/autocomplete.min.js defer></script><script src=/lib/lunr/lunr.min.js defer></script><script src=/lib/lunr/lunr.stemmer.support.min.js defer></script><script src=/lib/lunr/lunr.zh.min.js defer></script><script src=/lib/lazysizes/lazysizes.min.js async defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=/lib/cookieconsent/cookieconsent.min.js defer></script><script src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js async defer></script><script>window.config={code:{copyTitle:"复制到剪贴板",editLockTitle:"锁定可编辑代码块",editUnLockTitle:"解锁可编辑代码块",editable:!0,maxShownLines:10},comment:{enable:!1},cookieconsent:{content:{dismiss:"同意",link:"了解更多",message:"本网站使用 Cookies 来改善您的浏览体验。"},enable:!0,palette:{button:{background:"#f0f0f0"},popup:{background:"#1aa3ff"}},theme:"edgeless"},enablePWA:!0,search:{highlightTag:"em",lunrIndexURL:"/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"lunr"}}</script><script src=/js/theme.min.js defer></script><script src=/js/custom.min.js defer></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-Y7BJE11JP4",{anonymize_ip:!0})</script><script src="https://www.googletagmanager.com/gtag/js?id=G-Y7BJE11JP4" async></script></body></html>
