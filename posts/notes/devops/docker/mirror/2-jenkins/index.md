@@ -1,10 +1,7 @@
 # Jenkins保姆级安装教程
 
 
-<!--more-->
-
-## jenkins
-### 安装
+## 安装
 1、创建docker-compose文件
 ```bazaar
 services:
@@ -198,8 +195,8 @@ pipeline {
     }
 }
 ```
-### 配置插件
-#### gitlab
+## 配置插件
+### gitlab
 注意：需要先安装上面的Gitlab Plugin插件
 
 **1、gitlab生成授权令牌**
@@ -222,12 +219,12 @@ pipeline {
 
 ![gitlab-4.png](images/gitlab-4.png)
 
-#### harbor
+### harbor
 和gitlab一样，在凭证新增harbor凭证
 
 ![img.png](images/7.png)
 
-#### maven
+### maven
 进入 系统管理->全局管理
 
 **1、设置maven setting.xml**
@@ -238,8 +235,7 @@ pipeline {
 
 ![maven-2.png](images/maven-2.png)
 
-### 项目
-#### 构建
+## demo
 本文章采用构建一个自由风格的项目为例子
 ```shell
 pipeline {
@@ -337,9 +333,8 @@ pipeline {
     }
 }
 ```
-#### 回滚
 
-### 常见问题
+## 常见问题
 1、jenkins插件安装超时
 * Dashboard > 插件管理 > 高级 > 升级站点 > URL
 * URL更改为http://mirror.esuni.jp/jenkins/updates/update-center.json
