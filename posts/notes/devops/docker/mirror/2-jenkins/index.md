@@ -335,13 +335,13 @@ pipeline {
 ```
 
 ## 常见问题
-1、jenkins插件安装超时
-* Dashboard > 插件管理 > 高级 > 升级站点 > URL
-* URL更改为http://mirror.esuni.jp/jenkins/updates/update-center.json
+1、jenkins插件安装超时 
 
-2、不知道如何编写pipeline
+Dashboard > 插件管理 > 高级 > 升级站点 > URL 更改为http://mirror.esuni.jp/jenkins/updates/update-center.json
 
-点击项目项目的流水线语法
+2、生成插件pipeline
+
+点击流水线语法
 
 ![8.png](images/8.png)
 

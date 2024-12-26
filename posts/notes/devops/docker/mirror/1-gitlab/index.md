@@ -1,7 +1,5 @@
 # gitLab镜像部署
 
-
-<!--more-->
 ## docker部署
 1、镜像
 ```shell

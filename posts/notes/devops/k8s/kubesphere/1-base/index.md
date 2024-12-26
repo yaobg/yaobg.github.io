@@ -1,12 +1,6 @@
 # kubeSphere
 
-
-<!--more-->
-
-## 简介
-### kubeKey
-kubeKey相比kubeadm安装更加简单方便。
-### kubeSphere
+## kubeSphere
 KubeSphere，是基于 Kubernetes 内核的分布式多租户商用云原生操作系统。在开源能力的基础上，在多云集群管理、微服务治理、应用管理等多个核心业务场景进行功能延伸。
 
 [官方地址](https://kubesphere.io/zh)
@@ -182,10 +176,7 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 helm upgrade --install -n kubesphere-system --create-namespace ks-core https://charts.kubesphere.io/main/ks-core-1.1.3.tgz --debug --wait --set global.imageRegistry=swr.cn-southwest-2.myhuaweicloud.com/ks --set extension.imageRegistry=swr.cn-southwest-2.myhuaweicloud.com/ks
 ```
 3、如果显示如下信息，则表明 ks-core 安装成功：
-```yaml
-NOTES:
-Thank you for choosing KubeSphere Helm Chart.
-
+```
 Please be patient and wait for several seconds for the KubeSphere deployment to complete.
 
 1. Wait for Deployment Completion
