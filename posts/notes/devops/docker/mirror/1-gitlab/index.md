@@ -34,11 +34,11 @@ vi /etc/gitlab/gitlab.rb
 新增配置如下：
 ```yaml
 #gitlab访问地址，可以写域名。如果端口不写的话默认为80端口，注意此处不能写端口，不然无法访问
-external_url 'http://192.168.50.7'
+external_url 'http://192.168.50.7:9080'
 #ssh主机ip
 gitlab_rails['gitlab_ssh_host'] = '192.168.50.7'
 #ssh连接端口
-gitlab_rails['gitlab_shell_ssh_port'] = 10022
+gitlab_rails['gitlab_shell_ssh_port'] = 9022
 #时区
 gitlab_rails['time_zone'] = 'Asia/Shanghai'
 #开启备份功能
@@ -55,11 +55,6 @@ gitlab-ctl reconfigure
 # 容器外执行
 docker exec 容器名或容器ID gitlab-ctl reconfigure  
 ```
-修改gitlab.yaml中端口为9080
-
-
-![1.png](images/1.png)
-
 重启gitlab服务
 
 ```shell
