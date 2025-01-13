@@ -90,19 +90,32 @@ crontab -e
 0 2 * * * /mnt/nfs/gitlab.backup.sh start
 ```
 ## 常见问题
-1、gitLab的root密码怎么查看
+**1、gitLab的root密码怎么查看**
 ```yaml
 # 进入容器
 docker exec -it gitlab /bin/bash
 # 查看密码
 cat /etc/gitlab/initial_root_password
 ```
-2、CI/CD此作业已阻塞，因为该项目没有分配任何可用Runner。
+**2、CI/CD此作业已阻塞，因为该项目没有分配任何可用Runner。**
+
 解决办法
 - 编辑runner设置可以执行未设置tag的标签
 ![2.png](images/2.png)
 - 或者在gitlab-ci.yml文件中设置
 ![3.png](images/3.png)
+
+**3、gitlab http clone 端口错误**
+```
+vi /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
+```
+修改里面的端口为访问的端口，我这里是9080
+
+![1.png](images%2F1.png)
+```shell
+# 重启服务
+gitlab-ctl restart
+```
 
 ---
 
