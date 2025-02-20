@@ -64,7 +64,7 @@ Ollama是一个强大的本地大语言模型(LLM)运行平台。它提供了比
 
    **配置说明:**
    - `--network`: 指定容器网络,用于与Open WebUI互联
-   - `--gpus`: GPU配置,需提前完成[Docker GPU配置](https://yaobg.github.io/posts/notes/devops/k8s/gpu/#%E5%AE%89%E8%A3%85)
+   - `--gpus`: GPU配置,需提前完成[Docker GPU配置](https://yaobg.github.io/posts/notes/devops/k8s/gpu)
    - `-v`: 数据卷挂载,用于持久化存储模型文件
    - `-p`: 端口映射,11434为Ollama默认服务端口
 
@@ -132,6 +132,6 @@ echo $! > nohup_ollama.pid
 
 ---
 
-> 作者:   
+> 作者: [姚保国](https://yaobg.github.io)  
 > URL: https://yaobg.github.io/posts/notes/ai/ollama/  
 
