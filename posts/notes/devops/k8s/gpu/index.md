@@ -1,192 +1,130 @@
-# k8s调度GPU
+# Kubernetes GPU 资源调度指南
 
 
-## 环境说明
+## 环境要求
 
-| 工具         | 版本      | 备注                       |
-|------------|---------|--------------------------|
-| kubesphere | V4.1    | k8s管理平台                  |
-| kubernetes | v1.23.7 | k8s                      |
-| helm       |         | 包管理                      |
-| harbor     |         | 镜像管理                     |
-| docker     |         | 镜像                       |
-| nvidia     |         | 显卡                       |
-| CUDA       |         | NVIDIA 推出的一种通用并行计算平台和编程模 |
+### 软件版本
 
-## 显卡
+| 组件         | 版本      | 说明                          |
+|------------|---------|------------------------------|
+| Kubernetes | v1.23.7 | 容器编排平台                      |
+| KubeSphere | v4.1    | 企业级容器管理平台                   |
+| Helm       | 最新版     | Kubernetes的包管理工具            |
+| Docker     | 最新版     | 容器运行时                       |
+| NVIDIA驱动  | 550+    | GPU驱动程序                     |
+| CUDA       | 12.4    | NVIDIA并行计算平台                |
 
-### 安装
+## NVIDIA环境配置
 
-**NVIDIA**
+### 1. GPU驱动安装
 
-查看显卡
+#### 1.1 检查GPU设备
 
 ```shell
+# 查看NVIDIA显卡型号
 lspci | grep NVIDIA
 ```
 
-[官网](https://www.nvidia.cn/geforce/drivers/)搜索对应的显卡下载
+#### 1.2 安装驱动
 
-![1.png](images%2F1.png)
-![2.png](images%2F2.png)
-安装成功后，执行命令 nvidia-smi
+1. 访问[NVIDIA官方驱动下载页面](https://www.nvidia.cn/geforce/drivers/)
+2. 选择对应显卡型号和操作系统
+3. 下载并安装驱动
+
+#### 1.3 验证安装
 
 ```shell
+nvidia-smi
+```
+
+预期输出示例：
+```
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 550.127.05             Driver Version: 550.127.05     CUDA Version: 12.4     |
 |-----------------------------------------+------------------------+----------------------+
 | GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
-|                                         |                        |               MIG M. |
 |=========================================+========================+======================|
 |   0  NVIDIA GeForce RTX 3060        Off |   00000000:01:00.0 Off |                  N/A |
 |  0%   24C    P8             10W /  170W |     223MiB /  12288MiB |      0%      Default |
-|                                         |                        |                  N/A |
 +-----------------------------------------+------------------------+----------------------+
-                                                                                         
-+-----------------------------------------------------------------------------------------+
-| Processes:                                                                              |
-|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
-|        ID   ID                                                               Usage      |
-|=========================================================================================|
-|    0   N/A  N/A      1039      G   /usr/lib/xorg/Xorg                             35MiB |
-|    0   N/A  N/A     36553      G   /usr/lib/xorg/Xorg                             67MiB |
-|    0   N/A  N/A     36731      G   /usr/bin/gnome-shell                          104MiB |
-+-----------------------------------------------------------------------------------------+
-```  
-
-**CUDA**
-
-CUDA（Compute Unified Device Architecture） 是 NVIDIA 推出的一种通用并行计算平台和编程模型，允许开发人员使用 C、C++
-等编程语言编写高性能计算应用程序，它利用 GPU 的并行计算能力解决复杂的计算问题，特别是在深度学习、科学计算、图形处理等领域。所以一般情况下，安装完
-NVIDIA 驱动后，CUDA 也可以一并安装上。
-在下载 NVIDIA 驱动时，每个驱动版本都对应了一个 CUDA 版本，比如上面我们在下载驱动版本,它对应的 CUDA 版本为
-12.4，所以我们就按照这个版本号来安装。首先进入 CUDA Toolkit Archive 页面，这里列出了所有的 CUDA 版本：
-![3.png](images/3.png)
-
-**在 Docker 容器中使用 GPU 资源**
-
-测试下 GPU 是否可以在容器中使用：
-
-```shell
-# docker run --gpus all --rm centos:latest nvidia-smi
-docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
 ```
 
-可以看到命令执行报错了，想在 Docker 中使用 NVIDIA GPU 还必须安装 nvidia-container-runtime 运行时。
+### 2. CUDA工具包安装
 
-使用 NVIDIA Container Toolkit 来安装 nvidia-container-runtime，下面以ubuntu为例(其他参考官网Installation)
+CUDA (Compute Unified Device Architecture) 是NVIDIA推出的并行计算平台，支持使用GPU进行通用计算。
 
-1、Configure the production repository
+1. 访问[CUDA Toolkit Archive](https://developer.nvidia.com/cuda-toolkit-archive)
+2. 选择与GPU驱动匹配的CUDA版本（本例中为12.4）
+3. 按照官方指南完成安装
+
+## Docker GPU支持配置
+
+### 1. 安装NVIDIA Container Toolkit
 
 ```shell
+# 添加NVIDIA软件源
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
     sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-```
 
-2、Update the packages list from the repository
-
-```shell
+# 更新软件包列表
 sudo apt-get update
-```
 
-3、Install the NVIDIA Container Toolkit packages
-
-```shell
+# 安装NVIDIA Container Toolkit
 sudo apt-get install -y nvidia-container-toolkit
 ```
 
-4、安装 NVIDIA Container Toolkit 之后，再使用下面的命令将 Docker 的运行时配置成 nvidia-container-runtime
+### 2. 配置Docker运行时
 
 ```shell
+# 配置nvidia-container-runtime
 nvidia-ctk runtime configure --runtime=docker
-```
 
-这个命令的作用是修改 /etc/docker/daemon.json 配置文件
-
-```shell
-# cat /etc/docker/daemon.json
-{
-    "runtimes": {
-        "nvidia": {
-            "args": [],
-            "path": "nvidia-container-runtime"
-        }
-    }
-}
-```
-
-5、重启docker
-
-```shell
+# 重启Docker服务
 systemctl restart docker
 ```
 
-6、查看docker内是否可以使用gpu
+### 3. 验证Docker GPU支持
 
 ```shell
+# 运行测试容器
 docker run --gpus all --rm centos:latest nvidia-smi
 ```
 
-## k8s调用GPU
+## Kubernetes GPU资源调度
 
-### gpu-operator
+### 1. 部署GPU Operator
 
-GPU Operator 是 NVIDIA 提供的一个 Kubernetes 操作器，旨在简化在 Kubernetes 集群中安装和管理 NVIDIA GPU 驱动程序、CUDA 和其他与
-GPU 相关的软件组件。它自动化了许多与 GPU 管理相关的任务，例如：
+GPU Operator简化了Kubernetes集群中NVIDIA GPU的管理，提供以下功能：
+- 自动化GPU驱动管理
+- 设备插件配置
+- NVIDIA工具包集成
+- 运行时环境配置
 
-- 安装和管理 GPU 驱动：GPU Operator 能够自动在节点上安装和升级 NVIDIA GPU 驱动，并确保它们与集群中的其他组件兼容。
-
-- 设备插件：GPU Operator 包括 NVIDIA Device Plugin，它使得 Kubernetes 集群能够识别和调度 GPU 资源，以便容器能够访问 GPU 加速。
-
-- NVIDIA Toolkit：它包括了必要的工具（如 CUDA 和 NVIDIA Deep Learning SDK）来为运行 GPU 加速的容器提供支持。
-
-- GPU Operator 的自动化：包括 GPU 驱动、工具和设备插件的自动安装和配置，简化了管理过程。
-
-**1、安装**
+#### 1.1 使用Helm安装
 
 ```shell
-helm repo list
+# 添加NVIDIA Helm仓库
+helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
+helm repo update
 
-helm repo add nvidia https://helm.ngc.nvidia.com/nvidia && helm repo update
-
+# 安装GPU Operator
 helm install -n gpu-operator --create-namespace gpu-operator nvidia/gpu-operator --set driver.enabled=false
-
 ```
 
-安装成功后，输出
+#### 1.2 验证部署状态
 
 ```shell
-NAME: gpu-operator
-LAST DEPLOYED: Thu Dec 12 12:04:40 2024
-NAMESPACE: gpu-operator
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
+kubectl get deployment -n gpu-operator
 ```
 
-查看deployment是否正常
+### 2. GPU工作负载测试
 
-```shell
-k get deployment -n gpu-operator
-```
+创建测试Pod验证GPU功能：
 
-```shell
-NAME                                         READY   UP-TO-DATE   AVAILABLE   AGE
-gpu-operator                                 1/1     1            1           3h45m
-gpu-operator-node-feature-discovery-gc       1/1     1            1           3h45m
-gpu-operator-node-feature-discovery-master   1/1     1            1           3h45m
-```
-
-**2、测试GPU容器**
-
-GPU Operator 正确安装完成后，使用 CUDA 基础镜像，测试 K8s 是否能正确创建使用 GPU 资源的 Pod。
-
-- 创建资源清单文件
-
-```shell
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -194,55 +132,34 @@ metadata:
 spec:
   restartPolicy: OnFailure
   containers:
-  - name: cuda-ubuntu2204
-    image: "nvcr.io/nvidia/cuda:12.4.0-base-ubuntu22.04"
-    resources:
-      limits:
-        nvidia.com/gpu: 1
-    command: ["nvidia-smi"]
-
+    - name: cuda-ubuntu2204
+      image: "nvcr.io/nvidia/cuda:12.4.0-base-ubuntu22.04"
+      resources:
+        limits:
+          nvidia.com/gpu: 1
+      command: ["nvidia-smi"]
 ```
 
-- 创建资源
+## 常见问题解决
 
+### 1. 镜像拉取问题
+
+**问题**: registry.k8s.io镜像无法访问
+
+**解决方案**:
 ```shell
-kubectl apply -f cuda-ubuntu.yaml
-```
-
-- 查看日志
-
-```shell
-kubectl logs pod/cuda-ubuntu2204
-```
-
-- 清理测试资源
-
-```shell
-kubectl apply -f cuda-ubuntu.yaml
-```
-
-### 问题
-
-**1、 registry.k8s.io/nfd/node-feature-discovery:v0.16.6 镜像拉取不下来**
-
-找一个可以访问外网的机器，重现打tag，推送到harbor上，替换gpu-operator里面的镜像源为harbor地址
-
-```shell
+# 使用私有镜像仓库
 docker tag registry.k8s.io/nfd/node-feature-discovery:v0.16.6 192.168.50.7/library/node-feature-discovery:v0.16.6
 ```
 
-**2、 gpu-operator-node-feature-discovery-master无法启动**
+### 2. GPU Operator启动问题
 
-[问题原因](https://github.com/kubernetes-sigs/node-feature-discovery/issues/1730) 如果k8s版本低于1.24，需要关闭健康检测
+**问题**: K8s 1.24版本以下node-feature-discovery-master无法启动
 
 ```shell
 k edit deployment gpu-operator-node-feature-discovery-master -n gpu-operator
-```
-
-删除如下代码：
-
-```shell
-  livenessProbe:
+# 删除健康检查探针配置
+livenessProbe:
     grpc:
       port: 8082
       service: ''
@@ -260,7 +177,15 @@ k edit deployment gpu-operator-node-feature-discovery-master -n gpu-operator
     periodSeconds: 10
     successThreshold: 1
     failureThreshold: 10
+
 ```
+
+## 参考资源
+
+- [NVIDIA驱动下载](https://www.nvidia.cn/geforce/drivers/)
+- [CUDA Toolkit文档](https://docs.nvidia.com/cuda/)
+- [GPU Operator指南](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/overview.html)
+- [Kubernetes GPU调度文档](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/)
 
 
 ---

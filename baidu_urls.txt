@@ -1,3 +1,4 @@
+https://yaobg.github.io/posts/notes/ai/ollama/
 https://yaobg.github.io/posts/notes/devops/k8s/gpu/
 https://yaobg.github.io/posts/notes/devops/k8s/helm/
 https://yaobg.github.io/posts/notes/devops/docker/mirror/2-jenkins/
