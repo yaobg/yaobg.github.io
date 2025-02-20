@@ -193,6 +193,6 @@ gitlab-ctl restart
 
 ---
 
-> 作者:   
+> 作者: [姚保国](https://yaobg.github.io)  
 > URL: https://yaobg.github.io/posts/notes/devops/docker/mirror/1-gitlab/  
 
