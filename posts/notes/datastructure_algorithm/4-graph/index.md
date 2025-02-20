@@ -386,5 +386,5 @@ func getMinDistanceAndUnselectedNode(distanceMap map[*Node]int, selectedNodes ma
 ---
 
 > 作者: [姚保国](https://yaobg.github.io)  
-> URL: https://yaobg.github.io/posts/notes/datastructure_algorithm/zuochengyun/4-graph/  
+> URL: https://yaobg.github.io/posts/notes/datastructure_algorithm/4-graph/  
 

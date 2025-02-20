@@ -1,8 +1,22 @@
-# gitLab镜像部署
+# GitLab 容器化部署指南
 
-## docker部署
-1、镜像
-```shell
+
+## 📚 前言
+
+GitLab 是一个强大的 DevOps 平台，本文将详细介绍如何使用 Docker 部署和维护 GitLab 服务，帮助您快速构建安全、可靠的代码托管环境。
+
+## 🚀 一、环境准备
+
+### 1.1 系统要求
+
+- CPU: 4核心及以上
+- 内存: 最少 4GB，推荐 8GB
+- 磁盘空间: 至少 50GB
+- Docker 版本: 20.10 或更高
+
+### 1.2 部署命令
+
+```bash
 docker run --detach \
   --hostname 192.168.50.7 \
   --publish 9043:443 --publish 9080:80 --publish 9022:22 \
@@ -13,109 +27,169 @@ docker run --detach \
   --volume /mnt/nfs/gitlab/data:/var/opt/gitlab \
   gitlab/gitlab-ce:latest
 ```
-参数说明：
 
-- hostname：是访问地址，如果是公网访问，需要写公网的ip
-- publish：分别对应443 80 22端口
-- volume：挂载地址，前面是服务器地址，后面对应的镜像内地址
+### 1.3 参数说明
 
-注意事项：10080端口不能用，浏览器认为10080端口不安全
+| 参数 | 说明 | 建议值 |
+|------|------|--------|
+| hostname | 访问地址 | 公网IP或域名 |
+| publish | 端口映射 | 建议使用非标准端口 |
+| volume | 数据持久化 | 建议使用 SSD 存储 |
 
-2、修改配置文件
+> ⚠️ **安全提示**：避免使用 10080 端口，该端口可能被浏览器识别为不安全端口
 
-进入容器
-```shell
-docker exec -it gitlab /bin/bash
-```
-修改配置文件
-```shell
-vi /etc/gitlab/gitlab.rb
-```
-新增配置如下：
-```yaml
-#gitlab访问地址，可以写域名。如果端口不写的话默认为80端口，注意此处不能写端口，不然无法访问
-external_url 'http://192.168.50.7:9080'
-#ssh主机ip
-gitlab_rails['gitlab_ssh_host'] = '192.168.50.7'
-#ssh连接端口
-gitlab_rails['gitlab_shell_ssh_port'] = 9022
-#时区
-gitlab_rails['time_zone'] = 'Asia/Shanghai'
-#开启备份功能
-gitlab_rails['manage_backup_path'] = true
-#备份文件的权限
-gitlab_rails['backup_archive_permissions'] = 0644
-#保存备份 7 天
-gitlab_rails['backup_keep_time'] = 604800
-```
-生效配置：
-```shell
-# 容器内执行
-gitlab-ctl reconfigure
-# 容器外执行
-docker exec 容器名或容器ID gitlab-ctl reconfigure  
-```
-重启gitlab服务
+## ⚙️ 二、配置优化
 
-```shell
-gitlab-ctl restart
-```
+### 2.1 基础配置
 
-## 备份
-### 手动备份
-```yaml
-# 第一种进行入容器执行命令的方法进行手工备份
-docker exec -it 容器名或容器id bash  # 进入容器
-gitlab-rake gitlab:backup:create   # 执行gitlab备份命令
-
-# 第二种直接使用外部命令执行，一次完成
-docker exec 容器名或容器id gitlab-rake gitlab:backup:create
-
-```
-
-### 自动备份
-脚本
-```yaml
-#!/bin/bash
-case "$1" in
-  start)
-    docker exec gitlab gitlab-rake gitlab:backup:create
-    ;;
-esac
-```
-定时器
-```shell
-crontab -e
-# 新增下面一行，每天2点备份
-0 2 * * * /mnt/nfs/gitlab.backup.sh start
-```
-## 常见问题
-**1、gitLab的root密码怎么查看**
-```yaml
+```bash
 # 进入容器
-docker exec -it gitlab /bin/bash
-# 查看密码
-cat /etc/gitlab/initial_root_password
+docker exec -it gitlab bash
 ```
-**2、CI/CD此作业已阻塞，因为该项目没有分配任何可用Runner。**
 
-解决办法
-- 编辑runner设置可以执行未设置tag的标签
-![2.png](images/2.png)
-- 或者在gitlab-ci.yml文件中设置
-![3.png](images/3.png)
+### 2.2 核心配置
 
-**3、gitlab http clone 端口错误**
+编辑 `/etc/gitlab/gitlab.rb`：
+
+```ruby
+# 基础配置
+external_url 'http://192.168.50.7:9080'
+
+# SSH 服务配置
+gitlab_rails['gitlab_ssh_host'] = '192.168.50.7'
+gitlab_rails['gitlab_shell_ssh_port'] = 9022
+
+# 系统优化配置
+gitlab_rails['time_zone'] = 'Asia/Shanghai'
+unicorn['worker_timeout'] = 60
+unicorn['worker_processes'] = 3
+
+# 备份策略配置
+gitlab_rails['manage_backup_path'] = true
+gitlab_rails['backup_archive_permissions'] = 0644
+gitlab_rails['backup_keep_time'] = 604800  # 7天保留期
 ```
-vi /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
-```
-修改里面的端口为访问的端口，我这里是9080
 
-![1.png](images%2F1.png)
-```shell
+### 2.3 应用配置
+
+```bash
+# 重载配置
+gitlab-ctl reconfigure
+
 # 重启服务
 gitlab-ctl restart
 ```
+
+## 💾 三、备份方案
+
+### 3.1 手动备份
+
+```bash
+# 方式一：容器内执行
+docker exec -it gitlab bash
+gitlab-rake gitlab:backup:create
+
+# 方式二：一键备份
+docker exec gitlab gitlab-rake gitlab:backup:create
+```
+
+### 3.2 自动备份
+
+创建备份脚本 `/mnt/nfs/gitlab.backup.sh`：
+
+```bash
+#!/bin/bash
+# GitLab 自动备份脚本
+# 作者: Your Name
+# 更新时间: 2024-03-xx
+
+case "$1" in
+  start)
+    echo "开始备份 GitLab..."
+    docker exec gitlab gitlab-rake gitlab:backup:create
+    echo "备份完成!"
+    ;;
+esac
+```
+
+配置定时任务：
+
+```bash
+# 编辑定时任务
+crontab -e
+
+# 每天凌晨 2 点执行备份
+0 2 * * * /mnt/nfs/gitlab.backup.sh start >> /var/log/gitlab-backup.log 2>&1
+```
+
+## 🔧 四、故障排查
+
+### 4.1 密码查看
+
+```bash
+docker exec -it gitlab bash
+cat /etc/gitlab/initial_root_password
+```
+
+### 4.2 Runner 问题
+
+**现象**：CI/CD 作业阻塞，无可用 Runner
+
+**解决方案**：
+
+1. Runner 设置优化
+   ![Runner配置](images/2.png)
+
+2. CI 配置调整
+   ![CI设置](images/3.png)
+
+### 4.3 克隆端口问题
+
+1. 修改配置：
+```bash
+vi /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
+```
+
+2. 端口更新：
+   ![端口设置](images/1.png)
+
+3. 服务重启：
+```bash
+gitlab-ctl restart
+```
+
+## 📋 五、最佳实践
+
+### 5.1 安全建议
+
+- 启用 HTTPS
+- 定期更新密码
+- 配置防火墙规则
+- 启用双因素认证
+
+### 5.2 性能优化
+
+- 合理配置 worker 进程
+- 定期清理未使用的数据
+- 监控系统资源使用
+
+### 5.3 运维建议
+
+1. 建立备份验证机制
+2. 定期检查系统日志
+3. 制定故障恢复预案
+4. 保持版本及时更新
+
+## 📞 六、帮助支持
+
+如遇问题，请参考：
+- [GitLab 官方文档](https://docs.gitlab.com/)
+- [Docker Hub](https://hub.docker.com/r/gitlab/gitlab-ce)
+- [社区支持](https://forum.gitlab.com/)
+
+---
+
+> 🔔 **温馨提示**：部署完成后，请及时修改默认密码并配置安全策略。
 
 ---
 

@@ -239,5 +239,5 @@ func process(depth, n int, up bool, writer io.Writer) {
 ---
 
 > 作者: [姚保国](https://yaobg.github.io)  
-> URL: https://yaobg.github.io/posts/notes/datastructure_algorithm/zuochengyun/3-binary-tree/  
+> URL: https://yaobg.github.io/posts/notes/datastructure_algorithm/3-binary-tree/  
 
