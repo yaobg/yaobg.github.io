@@ -42,8 +42,8 @@ Ollama是一个强大的本地大语言模型(LLM)运行平台。它提供了比
    # 可选择以下镜像源:
    # 官方镜像
    docker pull ollama/ollama
-   # 国内加速镜像
-   docker pull 192.168.50.7/base/ollama
+   # 国内镜像
+   docker pull swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ollama/ollama:latest
    ```
 
 2. **创建容器网络**
@@ -59,7 +59,7 @@ Ollama是一个强大的本地大语言模型(LLM)运行平台。它提供了比
      -v /root/data/ollama:/root/.ollama \
      -p 11434:11434 \
      --name ollama \
-     192.168.50.7/base/ollama
+     ollama:latest
    ```
 
    **配置说明:**

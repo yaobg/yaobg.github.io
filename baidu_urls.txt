@@ -1,3 +1,7 @@
+https://yaobg.github.io/posts/notes/ai/langchain/data_connection/4-data-vector_stores/
+https://yaobg.github.io/posts/notes/ai/langchain/data_connection/3-data-embedding/
+https://yaobg.github.io/posts/notes/ai/langchain/data_connection/2-data-transformers/
+https://yaobg.github.io/posts/notes/ai/langchain/data_connection/1-data-loader/
 https://yaobg.github.io/posts/notes/ai/ollama/
 https://yaobg.github.io/posts/notes/devops/k8s/gpu/
 https://yaobg.github.io/posts/notes/devops/k8s/helm/
