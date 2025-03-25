@@ -19,7 +19,7 @@ ReAct Prompt 设计直观灵活，并在各种任务上实现了最先进的少�
 - Act-only baseline 缺乏推理能力方面问题，在这种情况下，尽管具有与ReAct相同的行动和观察，但无法综合得出最终答案。
   相比之下，ReAct通过可解释且真实可信的轨迹来解决任务。
 
-## demo
+### demo
 
 ```shell
 from langchain.agents import load_tools
